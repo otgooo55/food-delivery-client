@@ -80,7 +80,7 @@ export const FoodDetailModal = ({
                     Total price:
                   </p>
                   <div className="text-lg font-semibold text-[#09090B]">
-                    <p>${price}</p>
+                    <p>{price * quantity}</p>
                   </div>
                 </div>
                 <div className="flex w-[121px] justify-around">
