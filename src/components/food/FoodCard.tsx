@@ -7,6 +7,7 @@ import { MouseEventHandler, useState } from "react";
 import { Button } from "../ui/button";
 import { AddToCartAlert } from "./AddToCartAlert";
 import { FoodDetailModal } from "./FoodDetailModal";
+import { Category } from "@/types/types";
 
 type FoodCardProps = {
   foodName: string;
@@ -14,6 +15,11 @@ type FoodCardProps = {
   ingredients: string;
   image: string;
   _id: string;
+  createdAt: string;
+  updatedAt: string;
+  count: number;
+  category: Category;
+  __v: number;
 };
 
 export const FoodCard = ({
@@ -21,6 +27,11 @@ export const FoodCard = ({
   price,
   ingredients,
   image,
+  createdAt,
+  updatedAt,
+  count,
+  category,
+  __v,
 }: FoodCardProps) => {
   const food = {
     _id: "1",
@@ -28,6 +39,11 @@ export const FoodCard = ({
     price,
     image,
     ingredients,
+    createdAt,
+    updatedAt,
+    count,
+    category,
+    __v,
   };
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

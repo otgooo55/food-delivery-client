@@ -2,7 +2,7 @@ export type Category = {
   categoryName: string;
   createdAt: string;
   updatedAt: string;
-  count: number;
+
   __v: number;
   _id: string;
   foods: Food[];
@@ -14,8 +14,9 @@ export type Food = {
   price: number;
   image: string;
   ingredients: string;
-  category: string;
+  category: Category;
   createdAt: string;
   updatedAt: string;
   __v: number;
+  count: number;
 };
