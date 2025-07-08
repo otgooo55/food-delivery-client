@@ -15,9 +15,10 @@ import { useContext, useState } from "react";
 import { FoodCardContext } from "@/providers/FoodCart";
 import { count } from "console";
 import { Food } from "@/types/types";
+import { FoodType } from "@/constants/food";
 
 type FoodDetailModalProps = {
-  food: Food;
+  food: FoodType;
   isModalOpen: boolean;
   onToggleModal: () => void;
 };
@@ -31,7 +32,7 @@ export const FoodDetailModal = ({
 
   const { foodCart, setFoodCart } = useContext(FoodCardContext);
 
-  const { foodName, image, ingredients, price, count } = food;
+  const { foodName, image, ingredients, price } = food;
 
   const addQuantity = () => {
     setQuantity((prev) => prev + 1);
@@ -56,13 +57,9 @@ export const FoodDetailModal = ({
             categoryName: "",
             createdAt: "",
             updatedAt: "",
-            __v: 0,
-            foods: [],
           },
           createdAt: "",
           updatedAt: "",
-          count: count,
-          __v: 0,
         },
         quantity: quantity,
       },
