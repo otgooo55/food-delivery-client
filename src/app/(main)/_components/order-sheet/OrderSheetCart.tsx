@@ -22,8 +22,20 @@ import { FoodCardContext } from "@/providers/FoodCart";
 //     quantity: 1,
 //   },
 // ];
+
 export const OrderSheetCart = () => {
-  const { foodCart } = useContext(FoodCardContext);
+  const { foodCart, setFoodCart } = useContext(FoodCardContext);
+
+  const handleRemoveFromCart = (id: string) => {
+    setFoodCart((prev) => prev.filter((item) => item.food._id !== id));
+  };
+  const handleChangeQuantity = (id: string, newQuantity: number) => {
+    setFoodCart((prev) =>
+      prev.map((item) =>
+        item.food._id === id ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
   const renderFoodCard = () => {
     if (foodCart?.length) {
       return foodCart?.map((item) => {
@@ -32,6 +44,8 @@ export const OrderSheetCart = () => {
             key={item.food._id}
             food={item.food}
             quantity={item.quantity}
+            onChangeQuantity={handleChangeQuantity}
+            onRemove={handleRemoveFromCart}
           />
         );
       });

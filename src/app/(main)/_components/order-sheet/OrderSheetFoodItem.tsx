@@ -1,18 +1,31 @@
 import { SidebarDashLine } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { FoodType } from "@/constants/food";
 import { Food } from "@/types/types";
 
 import { CircleX, Minus, Plus } from "lucide-react";
 import Image from "next/image";
 type OrderSheetFoodItemProps = {
-  food: Food;
+  food: FoodType;
   quantity: number;
+  onChangeQuantity: (_foodId: string, newQuantity: number) => void;
+  onRemove: (id: string) => void;
 };
 
 export const OrderSheetFoodItem = ({
   food,
   quantity,
+  onRemove,
+  onChangeQuantity,
 }: OrderSheetFoodItemProps) => {
+  const addQuantity = () => {
+    onChangeQuantity(food._id, quantity + 1);
+  };
+  const subtractQuantity = () => {
+    if (quantity > 1) {
+      onChangeQuantity(food._id, quantity - 1);
+    }
+  };
   return (
     <>
       <div className="flex gap-3">
@@ -39,18 +52,25 @@ export const OrderSheetFoodItem = ({
               size={50}
               color="red"
               className="cursor-pointer"
+              onClick={() => onRemove(food._id)}
             />
           </div>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Button variant="ghost">
+              <Button
+                variant="ghost"
+                onClick={() => onChangeQuantity(food._id, quantity - 1)}
+              >
                 <Minus />
               </Button>
 
               <div className="text-lg font-semibold">{quantity}</div>
 
-              <Button variant="ghost">
+              <Button
+                variant="ghost"
+                onClick={() => onChangeQuantity(food._id, quantity + 1)}
+              >
                 <Plus />
               </Button>
             </div>

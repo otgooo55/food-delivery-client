@@ -46,24 +46,11 @@ export const FoodDetailModal = ({
     setFoodCart([
       ...foodCart,
       {
-        food: {
-          foodName: foodName,
-          price: price,
-          image: image,
-          ingredients: ingredients,
-          _id: "",
-          category: {
-            _id: "",
-            categoryName: "",
-            createdAt: "",
-            updatedAt: "",
-          },
-          createdAt: "",
-          updatedAt: "",
-        },
-        quantity: quantity,
+        food,
+        quantity,
       },
     ]);
+    setQuantity(1);
     onToggleModal();
   };
 
